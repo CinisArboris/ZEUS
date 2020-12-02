@@ -2,6 +2,8 @@ package TEST;
 
 // Estructuras de datos.
 import MODEL.FPincel;
+import MODEL.SelectionAdapter;
+import MODEL.SelectionPainter;
 import java.awt.BorderLayout;
 
 
@@ -141,7 +143,7 @@ public class Pincel {
         tileFactory.setLocalCache(new FileBasedLocalCache(cacheDir, false));
 
         // Setup JXMapViewer
-        final JXMapViewer mapViewer = new JXMapViewer();
+        JXMapViewer mapViewer = new JXMapViewer();
         mapViewer.setTileFactory(tileFactory);
 
         GeoPosition frankfurt = new GeoPosition(50.11, 8.68);
@@ -151,17 +153,18 @@ public class Pincel {
         mapViewer.setAddressLocation(frankfurt);
 
         // Add interactions
-        MouseInputListener mia = new PanMouseInputListener(mapViewer);
+        MouseInputListener mia;
+        mia = new PanMouseInputListener(mapViewer);
         mapViewer.addMouseListener(mia);
         mapViewer.addMouseMotionListener(mia);
 
         mapViewer.addMouseListener(new CenterMapListener(mapViewer));
         mapViewer.addMouseWheelListener(new ZoomMouseWheelListenerCursor(mapViewer));
-        mapViewer.addKeyListener(new PanKeyListener(mapViewer));
+        PanKeyListener queso = new PanKeyListener(mapViewer);
+        mapViewer.addKeyListener(queso);
 
         // Add a selection painter
-        SelectionAdapter sa;
-        sa = new SelectionAdapter(mapViewer);
+        SelectionAdapter sa = new SelectionAdapter(mapViewer);
         SelectionPainter sp = new SelectionPainter(sa);
         mapViewer.addMouseListener(sa);
         mapViewer.addMouseMotionListener(sa);
@@ -169,8 +172,13 @@ public class Pincel {
 
         // Display the viewer in a JFrame
         final JFrame frame = new JFrame();
-        frame.setLayout(new BorderLayout());
-        String text = "Use left mouse button to pan, mouse wheel to zoom and right mouse to select";
+        
+        BorderLayout tmp = new BorderLayout();
+        frame.setLayout(tmp);
+        
+        String text = "[Clic izquierdo sostenido para mover]"
+                + "[Rueda del mouse, zoom IN / zoom OUT]Use left mouse button to pan, mouse wheel to zoom and right mouse to select";
+        
         frame.add(new JLabel(text), BorderLayout.NORTH);
         frame.add(mapViewer);
         frame.setSize(800, 600);
