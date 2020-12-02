@@ -6,7 +6,6 @@ import MODEL.SelectionAdapter;
 import MODEL.SelectionPainter;
 import java.awt.BorderLayout;
 
-
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
@@ -52,20 +51,28 @@ public class Pincel {
     public void e_01() {
         JXMapViewer mapViewer = new JXMapViewer();
         TileFactoryInfo info = new OSMTileFactoryInfo();
+        
+        /**
+         * Cargar mapa object.
+         */
         DefaultTileFactory tileFactory = new DefaultTileFactory(info);
         mapViewer.setTileFactory(tileFactory);
 
-        // Use 8 threads in parallel to load the tiles
+        /**
+         * Usar 8 segmentos para cargar.
+         */
         tileFactory.setThreadPoolSize(8);
 
-        // Set the focus
-        GeoPosition frankfurt = new GeoPosition(50.11, 8.68);
+        /**
+         * Cargar mapa centrado en: Santa Cruz de la Sierra - Bolivia.
+         */
+        GeoPosition santaCruz = new GeoPosition(-17.784867, -63.182515);
 
-        mapViewer.setZoom(7);
-        mapViewer.setAddressLocation(frankfurt);
+        mapViewer.setZoom(5);// Nivel zoom.
+        mapViewer.setAddressLocation(santaCruz);
 
         // Display the viewer in a JFrame
-        JFrame frame = new JFrame("JXMapviewer2 Example 1");
+        JFrame frame = new JFrame("Santa Cruz de la Sierra");
         frame.getContentPane().add(mapViewer);
         frame.setSize(800, 600);
         //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -90,26 +97,34 @@ public class Pincel {
         DefaultTileFactory tileFactory = new DefaultTileFactory(info);
         mapViewer.setTileFactory(tileFactory);
 
-        GeoPosition frankfurt = new GeoPosition(50,  7, 0, 8, 41, 0);
-        GeoPosition wiesbaden = new GeoPosition(50,  5, 0, 8, 14, 0);
-        GeoPosition mainz     = new GeoPosition(50,  0, 0, 8, 16, 0);
-        GeoPosition darmstadt = new GeoPosition(49, 52, 0, 8, 39, 0);
-        GeoPosition offenbach = new GeoPosition(50,  6, 0, 8, 46, 0);
-
+        /**
+         * Cargar mapa centrado en: Santa Cruz de la Sierra - Bolivia.
+         * Rodeando la Plaza 24 de Septiembre.
+         */
+        GeoPosition A = new GeoPosition(-17.784867, -63.182515);
+        GeoPosition B = new GeoPosition(-17.784809, -63.181495);
+        GeoPosition C = new GeoPosition(-17.782744, -63.181656);
+        GeoPosition D = new GeoPosition(-17.782818, -63.182657);
+        
+        
         // Create a track from the geo-positions
-        List<GeoPosition> track = Arrays.asList(frankfurt, wiesbaden, mainz, darmstadt, offenbach);
+        List<GeoPosition> track = Arrays.asList(
+                A, B, C, D
+            );
         FPincel fpincel = new FPincel(track);
 
         // Set the focus
         mapViewer.zoomToBestFit(new HashSet<>(track), 0.7);
 
         // Create waypoints from the geo-positions
-        Set<Waypoint> waypoints = new HashSet<>(Arrays.asList(
-                new DefaultWaypoint(frankfurt),
-                new DefaultWaypoint(wiesbaden),
-                new DefaultWaypoint(mainz),
-                new DefaultWaypoint(darmstadt),
-                new DefaultWaypoint(offenbach)));
+        Set<Waypoint> waypoints = new HashSet<>(
+                Arrays.asList(
+                    new DefaultWaypoint(A),
+                    new DefaultWaypoint(B),
+                    new DefaultWaypoint(C),
+                    new DefaultWaypoint(D)
+                )
+            );
 
         // Create a waypoint painter that takes all the waypoints
         WaypointPainter<Waypoint> waypointPainter = new WaypointPainter<>();
@@ -124,9 +139,7 @@ public class Pincel {
         mapViewer.setOverlayPainter(painter);
     }
 
-    protected static void updateWindowTitle(
-            JFrame frame,
-            JXMapViewer mapViewer){
+    protected static void updateWindowTitle(JFrame frame, JXMapViewer mapViewer){
         double lat = mapViewer.getCenterPosition().getLatitude();
         double lon = mapViewer.getCenterPosition().getLongitude();
         int zoom = mapViewer.getZoom();
