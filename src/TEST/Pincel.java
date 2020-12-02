@@ -46,6 +46,9 @@ public class Pincel {
     public Pincel() {
     }
     
+    /**
+     * Mapa Estatico.
+     */
     public void e_01() {
         JXMapViewer mapViewer = new JXMapViewer();
         TileFactoryInfo info = new OSMTileFactoryInfo();
@@ -69,6 +72,9 @@ public class Pincel {
         frame.setVisible(true);
     }
 
+    /**
+     * Mapa Estatico con rutas.
+     */
     public void e_02() {
         JXMapViewer mapViewer = new JXMapViewer();
 
@@ -133,8 +139,22 @@ public class Pincel {
             );
     }
     
+    /**
+     * Mapa dinamico ante los eventos del [MOUSE].
+     * Clic izquierdo, mover el mapa
+     * Rueda del mouse :: Zoom IN / Zoom OUT
+     */
     public void e_03() {
-        // Create a TileFactoryInfo for OpenStreetMap
+        
+        /**
+         * Encapsula toda la información específica de un servidor
+         * de mapas.
+         * Esto incluye todo, desde la URL hasta Cargue los
+         * mosaicos del mapa desde el tamaño y la profundidad
+         * de los mosaicos.
+         * Teóricamente, cualquier servidor de mapas se puede
+         * utilizar instalando un TileFactoryInfo personalizado
+         */
         TileFactoryInfo info = new OSMTileFactoryInfo();
         DefaultTileFactory tileFactory = new DefaultTileFactory(info);
 
@@ -177,7 +197,8 @@ public class Pincel {
         frame.setLayout(tmp);
         
         String text = "[Clic izquierdo sostenido para mover]"
-                + "[Rueda del mouse, zoom IN / zoom OUT]Use left mouse button to pan, mouse wheel to zoom and right mouse to select";
+                + "     "
+                + "[Rueda del mouse, zoom IN / zoom OUT]";
         
         frame.add(new JLabel(text), BorderLayout.NORTH);
         frame.add(mapViewer);
