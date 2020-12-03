@@ -1,5 +1,7 @@
 package VIEW;
 
+import PRUEBAS.A.EJ_A;
+import PRUEBAS.B.EJ_B;
 import TEST.Pincel;
 
 /**
@@ -7,14 +9,14 @@ import TEST.Pincel;
  * @author eyver-dev
  */
 public class v_dashboard extends javax.swing.JFrame {
-    public Pincel pincel;
+    
 
     /**
      * Creates new form v_dashboard
      */
     public v_dashboard() {
         initComponents();
-        this.pincel = new Pincel();
+        
     }
 
     /**
@@ -46,7 +48,7 @@ public class v_dashboard extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 109, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -72,7 +74,7 @@ public class v_dashboard extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("personalizado");
+        jButton4.setText("ejemplo 04");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -90,7 +92,7 @@ public class v_dashboard extends javax.swing.JFrame {
                     .addComponent(jButton2)
                     .addComponent(jButton3)
                     .addComponent(jButton4))
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,7 +105,7 @@ public class v_dashboard extends javax.swing.JFrame {
                 .addComponent(jButton3)
                 .addGap(18, 18, 18)
                 .addComponent(jButton4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -122,10 +124,8 @@ public class v_dashboard extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 175, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -136,22 +136,27 @@ public class v_dashboard extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        this.pincel.e_01();
+        EJ_A pincel = new PRUEBAS.A.EJ_A();
+        pincel.ejemplo01();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        this.pincel.e_02();
+        EJ_B pincel = new PRUEBAS.B.EJ_B();
+        pincel.ejemplo01();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        this.pincel.e_03();
+        
+        EJ_B pincel = new PRUEBAS.B.EJ_B();
+        pincel.ejemplo01();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        
+        EJ_B pincel = new PRUEBAS.B.EJ_B();
+        pincel.ejemplo01();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**

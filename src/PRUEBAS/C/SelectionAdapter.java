@@ -1,4 +1,4 @@
-package MODEL;
+package PRUEBAS.C;
 
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;

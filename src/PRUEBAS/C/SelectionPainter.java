@@ -1,4 +1,4 @@
-package MODEL;
+package PRUEBAS.C;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
